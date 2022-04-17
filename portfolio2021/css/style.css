@@ -1,0 +1,495 @@
+/* Global */
+:root {
+  /* Color */
+  --color-white: #ffffff;
+  --color-light-white: #eeeeee;
+  --color-dark-white: #a09d9d;
+  --color-pink: #c28684;
+  --color-bluegrey: #706b9e;
+  --color-black: #4d4d4d;
+  --color-dark-grey: #4d4d4d;
+  --color-grey: #616161;
+  --color-light-grey: #7c7979;
+  --color-blue: #73aace;
+  --color-yellow: #fff7d1;
+  --color-orange: #feb546;
+  --color-black: #000000;
+  --color-dark-slate-blue: #483D8B;
+  --color-steelblue: #4682B4;
+  --color-blue-g: #7884cc;
+  --color-blue-g2: #aab3ff;
+  --color-blue-g3: #47589b;
+  --color-antique-white: #FAEBD7;
+
+  /* Font size */
+  --font-large: 48px;
+  --font-medium: 28px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
+
+  /* Font weight */
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+  /* Size */
+  --size-border-radius: 4px;
+
+  /* Animation */
+  --animation-duration: 300ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  cursor: default;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* 버튼 속성 없애기 */
+button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+/*
+navbar는 ID선택자로 되어 있기 때문에 navbar에게 너 안에 박스 두 개 있는데
+우리 플렉스 박스로 하자 그래서 박스가 양쪽에 나올 수 있도록 그리고 중심 축은
+수평축이니까 중심축에서 정렬할 수 있는 것은 justify-content이니까
+space-between을 이용해서 간격이 떨어져 있도록 만들었음
+*/
+#navbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  align-items: center;
+  padding: 16px;
+  color: var(--color-dark-white);
+  /* 스크롤 와이가 렌더링된 높이 보다 크면 네브바 접히는 애니메이션 시간 300ms적용 */
+  transition: all var(--animation-duration) ease-in-out;
+  z-index: 1;/* 네브바는 무슨 일이 있어도 위에 있어야 하니까 1로 설정함 */
+}
+
+#navbar.navbar--dark {
+  background-color: var(--color-blue-g3);
+  padding: 8px;
+}
+
+.navbar__menu {
+  display: flex;
+}
+
+.navbar__logo {
+  font-size: var(--font-regular);
+  font-weight: var(--weight-semi-bold);
+}
+
+.navbar__menu__item {
+  padding: 8px 12px;/* 위아래 패딩은 8 양옆 패딩은 12 */
+  margin: 0 4px;
+  cursor: pointer;
+  border-radius: var(--size-border-radius);
+}
+
+.navbar__menu__item.active {
+  border: 1px solid var(--color-blue-g);
+}
+
+.navbar__menu__item:hover {
+  background-color: var(--color-white);
+}
+
+/* 버거 아이콘  - 반응형 웹 위해 */
+.navbar__toggle-btn {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  font-size: 24px;
+  display: none;
+}
+
+/* Home */
+#home {
+  background: url('/images/Homebackgraound.jpg') center/cover no-repeat;
+  padding: 40px;/* 위아래 양옆 패딩을 40px */
+  padding-top: 120px;
+  text-align: center;/* 글자 중앙 배치 위해 */
+}
+
+.home__avatar {
+  width: 250px;/* 사진크기 폭 */
+  height: 250px;/* 사진크기 높이 */
+  border-radius: 50%;/* 사진원형 */
+  border: 2px solid var(--color-light-white);/* 사진 주위 테두리추가 */
+}
+
+.home__title,
+.home__description {
+  color: var(--color-white);
+}
+
+.home__contact {
+  /* 글자색 */
+  color: var(--color-white);
+  /* 폰트 크기 */
+  font-size: var(--font-regular);
+  /* 폰트 두께 */
+  font-weight: var(--weight-bold);
+  /* 버튼 테두리 */
+  border: 2px solid var(--color-white);
+  margin: 24px;
+  /* 버튼안에 라벨과 패딩 */
+  padding: 8px 12px;
+  /* 버튼의 모서리 */
+  border-radius: var(--size-border-radius);
+}
+
+.section {
+  padding: 50px;
+  text-align: center;
+}
+
+.section__container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about__majors {
+  display: flex;
+  justify-content: space-between;
+  margin: 80px 0;
+}
+
+.major__icon {
+  width: 170px;
+  height: 170px;
+  /* 원형안에 아이콘 중앙배치 */
+  line-height: 170px;
+  font-size: 70px;/* 아이콘 크기조정 */
+  margin: auto;
+  border: 1px solid var(--color-blue-g2);
+  border-radius: 50%;
+  margin-bottom: 16px;/* 아이콘 하단 마진 */
+  color: var(--color-blue-g3);
+}
+
+.major__icon i {
+  /* 아이콘 애니메이션 효과 시간조정 */
+  transition: all var(--animation-duration) ease;
+}
+
+.major__icon:hover i{
+  color: var(--color-blue);
+  /* 30도 기울기 조정 */
+  transform: rotate(-30deg) scale(1.1);/* 10%커보이게 */
+}
+
+.major__title, 
+.major__description {
+  color: var(--color-dark-grey);
+}
+
+.major__description {
+  font-size: var(--font-small);
+}
+
+.school {
+  /* 학교이미지와 설명을 같은 행에 출력 */
+  display: flex;
+  /* 이미지와 설명 사이의 정렬 */
+  align-items: center;
+}
+
+/* 학교에 대한 설명 처리 */
+.school__description {
+  margin: 0 16px;
+  text-align: left;
+}
+
+/* 학교 이름과 기간 폰트 그레이 색상 적용  */
+.school__name,
+.school__period {
+  color: var(--color-light-grey);
+}
+
+/* 학교 이름 폰트 정보 */
+.school__name {
+  font-size: var(--font-small);
+}
+
+/* 학교 기간 폰트 정보 */
+.school__period {
+  font-size: var(--font-micro);
+}
+
+/* Skill */
+/* 시각적인 효과를 위해서 배경색을 밝은색으로 */
+#skills {
+  background-color: var(--color-light-white)
+}
+
+/* 우리가 스킬셋이라는 컨테이너 박스를 디스플레이로 만듦
+skills와 tools가 두 줄로 보이도록
+아이템들이 크기가 자동적으로 늘어나게 만들기 위해서는 
+아이템별로 우리가 flex-basis를 지정해줌.
+*/
+
+.skillset {
+  display: flex;/* skills와 tools가 두줄로 */
+  background-color: var(--color-bluegrey);/* 배경색 */
+  color: var(--color-light-white);/* 글자흰색 */
+}
+
+.skillset__left {
+  flex-basis: 60%;
+  background-color: var(--color-blue-g);
+  padding: 20px 40px;/* 위아래 20, 양옆은 40 */
+}
+
+.skill {
+  margin-bottom: 32px;
+}
+
+.skill__description {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skill__bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-dark-slate-blue);
+}
+
+.skill__value {
+  background-color: var(--color-antique-white);
+  height: 3px;
+}
+
+.skillset__right {
+  flex-basis: 40%;
+}
+
+.tools {
+  background-color: var(--color-blue-g2);
+}
+
+.tools,
+.etc {
+  padding: 20px;
+}
+
+/* Work */
+.work__categories {
+  margin: 40px;
+}
+
+.category__btn {
+  border: 1px solid var(--color-dark-white);
+  font-size: var(--font-regular);
+  border-radius: var(--size-border-radius);
+  padding: 8px 48px;
+}
+
+.category__btn.active,
+.category__btn:hover {
+  background-color: var(--color-bluegrey);
+  color: var(--color-white);
+}
+
+.work__projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 1;
+  transition: all  var(--animation-duration) ease-in;
+}
+
+.work__projects.anim-out {
+  opacity: 0;
+  transform: scale(0.96) translateY(40px);
+}
+
+.project {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 250px;
+  margin: 2px;
+  background-color: var(--color-light-white);
+}
+
+.project.invisible {
+  display: none;
+}
+
+/* 자기가 담겨져 있는 크기 안에서만 차지해야 함 */
+.project__img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.project__description {
+  background-color: black;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--animation-duration) ease-in;
+}
+
+.project:hover .project__description {
+  opacity: 0.8;
+  transform: translateY(0px);
+}
+
+.project__description h3 {
+  color: var(--color-white);
+}
+
+.project__description h3:after {
+  content: '';
+  display: block;
+  position: relative;
+  left: 50%;
+  margin-left: -12px;
+  margin-top: 8px;
+  width: 25px;
+  height: 2px;
+  background-color: var(--color-dark-white)
+}
+
+/* Contact */
+#contact {
+  background-color: var(--color-blue-g3);
+}
+
+.contact__title,
+.contact__email,
+.contact__rights {
+  color: var(--color-antique-white);
+}
+
+.contact__title {
+  margin: 32px 0;
+}
+
+.contact__links {
+  font-size: var(--font-large);
+  margin: 24px 0;
+  transition: all var(--animation-duration) ease-in;
+}
+
+.contact__links i:hover {
+  transform: scale(1.1);
+  color: var(--color-yellow);
+}
+
+.arrow-up {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 70px;
+  height: 70px;
+  font-size: 50px;
+  color: var(--color-white);
+  background-color: var(--color-blue-g);
+  border-radius: 50px;
+  display: none;
+}
+
+.arrow-up.visible {
+  display: block;
+}
+
+/* 
+  미디어 쿼리에서 화면이 768보다 적을 때는 토글 버튼의 디스플레이를  블록요소로
+  보여주고 플렉스의 디렉션을 위해서 아래로 바꿔줘야 되니까 컬럼을 사용해야 합니다.
+  그러면 위에서 아래로 나오게 되고 이 메뉴 아이템도 위에서 아래로 나오게 돼야
+  하는데 지금 정렬이 왼쪽으로 가야 되잖아요 컬럼 앞에는 중심축이 수직이니까
+  우리가 수평 반대쪽에서 정리를 해야 되기 때문에 얼라인 아이템들을 이용해서
+  플렉스 스타트 이용하면 왼쪽으로 정렬이 됩니다.
+
+  미디어 쿼리는 스크린 사이즈가 작을때만 적용되는 스타일링
+  입니다. 그래서 미디어쿼리가 아닐때는 우리가 토글버튼을
+  숨겨줘야 합니다 
+
+  버거아이콘은 평상시에는 보여주면 안되니까
+  디스플레이 none을 이용하고 opacity를 이용하는 사람들이
+  있는데 투명도만 조정하게 되면 실제로 마우스가 클릭이
+  되므로 사용하지 않는 것이 좋습니다 
+
+  미디어 쿼리에서 화면이 768보다 작을 때는 토글 버튼의
+  디스플레이를 블록으로 보여주고 flex-direction은
+  컬럼으로 설정해야 합니다. 
+*/
+
+@media screen and (max-width:768px) {
+  .navbar__toggle-btn {
+    display: block;
+  }
+
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--color-bluegrey);
+  }
+
+  #navbar.navbar--dark {
+    padding: 16px;
+  }
+
+  .navbar__menu {
+    flex-direction: column;
+    text-align: center;
+    /* navbar 메뉴 자체 너비가 작아서 너비를 100%로 
+    줘야 중간으로 옵니다  */
+    width: 100%;
+    /* 토글 버튼 클릭했을 때 메뉴가 나오게 해야 합니다  */
+    display: none;
+  }
+  
+  .navbar__menu.open {
+    display: block;
+  }
+
+  .about__majors {
+    flex-direction: column;
+  }
+  .major {
+    margin-bottom: 38px;
+  }
+
+  .skillset {
+    flex-direction: column;
+  }
+  /* 화면이 작아지면 그로우가 알아서 화면을 메꿔줌 */
+  .project {
+    flex-grow: 1;
+  }
+
+}
